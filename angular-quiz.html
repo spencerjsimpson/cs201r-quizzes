@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--include angularJS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!--include JS files-->
+    <script src="aq.js"></script>
+
+    <!--include stylesheets-->
+    <link type="text/css" rel="stylesheet" href="aq.css">
+
+    <!-- Including Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,400i,700,700i|Open+Sans:100,300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <!-- Including MDL Library -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue-yellow.min.css">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+
+</head>
+<body ng-app="myApp" ng-controller="familyHistoryCtrl">
+<div class="header-wrapper">
+    <header>
+        <div class="header-title">WORD PROCESSOR ONLINE</div>
+    </header>
+</div>
+<div class="main-content">
+    <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__title">
+                    <div class="mdl-card__title-text">
+                        Enter a Family Member
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form ng-submit="familyAdd()">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" ng-model="nameInput" id="person">
+                            <label class="mdl-textfield__label" for="person">Person...</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" ng-model="fatherInput" id="father">
+                            <label class="mdl-textfield__label" for="father">Father...</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" ng-model="motherInput" id="mother">
+                            <label class="mdl-textfield__label" for="mother">Mother...</label>
+                        </div>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--primary">
+                            Add New
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__title">
+                    <div class="mdl-card__title-text">
+                        List of Members
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div ng-repeat="x in fhList">
+                        <label for="chckbx1" class="mdl-checkbox mdl-js-checkbox">
+                            <!-- "x.done" pairs the checkbox (t/f) with the done element of each "x"-->
+                            <input type="checkbox" id="chckbx1" class="mdl-checkbox__input" ng-model="x.done">
+                            <span class="mdl-checkbox__label">{{x.name + ", "+ x.father + ", " + x.mother}}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="mdl-card__actions">
+                    <button ng-click="remove()" class="mdl-button mdl-js-button mdl-button--primary">
+                        Remove marked
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
